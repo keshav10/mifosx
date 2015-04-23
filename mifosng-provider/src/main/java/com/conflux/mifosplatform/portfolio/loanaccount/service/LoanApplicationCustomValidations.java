@@ -1,8 +1,11 @@
 package com.conflux.mifosplatform.portfolio.loanaccount.service;
 
 
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 
+import org.mifosplatform.portfolio.common.BusinessEventNotificationConstants.BUSINESS_ENTITY;
 import org.mifosplatform.portfolio.common.BusinessEventNotificationConstants.BUSINESS_EVENTS;
 import org.mifosplatform.portfolio.common.service.BusinessEventListner;
 import org.mifosplatform.portfolio.common.service.BusinessEventNotifierService;
@@ -53,6 +56,18 @@ public class LoanApplicationCustomValidations {
 
         @Override
         public void businessEventWasExecuted(AbstractPersistable<Long> businessEventEntity) {
+            
+        }
+
+        @Override
+        public void businessEventToBeExecuted(Map<BUSINESS_ENTITY, Object> businessEventEntity) {
+            // TODO Auto-generated method stub
+            
+        }
+
+        @Override
+        public void businessEventWasExecuted(Map<BUSINESS_ENTITY, Object> businessEventEntity) {
+            // TODO Auto-generated method stub
             
         }
     }
