@@ -16,10 +16,12 @@ public class SearchData {
     private final String entityType;
     private final Long parentId;
     private final String parentName;
+    private final String entityMobileNo;
     private final EnumOptionData entityStatus;
 
     public SearchData(final Long entityId, final String entityAccountNo, final String entityExternalId, final String entityName,
-            final String entityType, final Long parentId, final String parentName, final EnumOptionData entityStatus) {
+            final String entityType, final Long parentId, final String parentName, final String entityMobileNo,
+            final EnumOptionData entityStatus) {
 
         this.entityId = entityId;
         this.entityAccountNo = entityAccountNo;
@@ -28,6 +30,7 @@ public class SearchData {
         this.entityType = entityType;
         this.parentId = parentId;
         this.parentName = parentName;
+        this.entityMobileNo = entityMobileNo;
         this.entityStatus = entityStatus;
     }
 
@@ -57,6 +60,10 @@ public class SearchData {
 
     public String getParentName() {
         return this.parentName;
+    }
+
+    public String getEntityMobileNo() {
+        return this.entityMobileNo;
     }
 
     public EnumOptionData getEntityStatus() {

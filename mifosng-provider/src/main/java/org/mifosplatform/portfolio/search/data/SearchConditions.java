@@ -14,7 +14,7 @@ public class SearchConditions {
     private final Boolean clientSearch;
     private final Boolean groupSearch;
     private final Boolean loanSeach;
-	private final Boolean savingSeach;
+    private final Boolean savingSeach;
     private final Boolean clientIdentifierSearch;
 
     public SearchConditions(final String searchQueryParam, final String searchResource) {
@@ -28,7 +28,7 @@ public class SearchConditions {
                 SEARCH_SUPPORTED_RESOURCES.LOANS.name().toLowerCase())) ? true : false;
         this.savingSeach = (null == searchResource || searchResource.toLowerCase().contains(
                 SEARCH_SUPPORTED_RESOURCES.SAVINGS.name().toLowerCase())) ? true : false;
-  		this.clientIdentifierSearch = (null == searchResource || searchResource.toLowerCase().contains(
+        this.clientIdentifierSearch = (null == searchResource || searchResource.toLowerCase().contains(
                 SEARCH_SUPPORTED_RESOURCES.CLIENTIDENTIFIERS.name().toLowerCase())) ? true : false;
     }
 
@@ -39,7 +39,7 @@ public class SearchConditions {
         this.clientSearch = clientSearch;
         this.groupSearch = groupSearch;
         this.loanSeach = loanSeach;
-		this.savingSeach = savingSeach;
+        this.savingSeach = savingSeach;
         this.clientIdentifierSearch = clientIdentifierSearch;
     }
 
@@ -67,7 +67,7 @@ public class SearchConditions {
         return this.savingSeach;
     }
 
-	public Boolean isClientIdentifierSearch() {
+    public Boolean isClientIdentifierSearch() {
         return this.clientIdentifierSearch;
     }
 
