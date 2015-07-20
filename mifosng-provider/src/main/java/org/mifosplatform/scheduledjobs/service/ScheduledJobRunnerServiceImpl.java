@@ -21,8 +21,6 @@ import org.mifosplatform.infrastructure.core.serialization.ToApiJsonSerializer;
 import org.mifosplatform.infrastructure.core.service.DateUtils;
 import org.mifosplatform.infrastructure.core.service.RoutingDataSourceServiceFactory;
 import org.mifosplatform.infrastructure.core.service.ThreadLocalContextUtil;
-import org.mifosplatform.infrastructure.hooks.event.HookEvent;
-import org.mifosplatform.infrastructure.hooks.event.HookEventSource;
 import org.mifosplatform.infrastructure.jobs.annotation.CronTarget;
 import org.mifosplatform.infrastructure.jobs.exception.JobExecutionException;
 import org.mifosplatform.infrastructure.jobs.service.JobName;
@@ -35,7 +33,6 @@ import org.mifosplatform.portfolio.savings.service.DepositAccountReadPlatformSer
 import org.mifosplatform.portfolio.savings.service.DepositAccountWritePlatformService;
 import org.mifosplatform.portfolio.savings.service.SavingsAccountChargeReadPlatformService;
 import org.mifosplatform.portfolio.savings.service.SavingsAccountWritePlatformService;
-import org.mifosplatform.useradministration.domain.AppUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -368,24 +365,7 @@ public class ScheduledJobRunnerServiceImpl implements ScheduledJobRunnerService 
 
     }
 
-	@Override
-	@CronTarget(jobName = JobName.LOAN_REPAYMENT_SMS_REMINDER_TO_CLIENT)
-	public void LoanRepaymentSmsReminder() {
-		// TODO Auto-generated method stub
-                 
-		        final String authToken = ThreadLocalContextUtil.getAuthToken();
-		        final String tenantIdentifier = ThreadLocalContextUtil.getTenant().getTenantIdentifier();
-		        final AppUser appUser = this.context.authenticatedUser();
-
-		        final HookEventSource hookEventSource = new HookEventSource("LoanRepaymentSmsReminder", "Remindclient");
-
-		        final String serializedResult = this.toApiResultJsonSerializer.serialize("{reportName=Loan Repayment Reminders}");
-
-		        final HookEvent applicationEvent = new HookEvent(hookEventSource, serializedResult, tenantIdentifier, appUser, authToken);
-
-		        applicationContext.publishEvent(applicationEvent);
-		    }
-		
+	
 	
 
 }

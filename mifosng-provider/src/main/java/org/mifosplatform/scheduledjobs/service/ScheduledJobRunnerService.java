@@ -23,6 +23,6 @@ public interface ScheduledJobRunnerService {
 
     void generateRDSchedule();
     
-    void LoanRepaymentSmsReminder(); 
+   
     
 }
