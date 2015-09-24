@@ -117,6 +117,8 @@ public abstract class AbstractLoanScheduleGenerator implements LoanScheduleGener
             principalDisbursed = principalDisbursed.zero().plus(disburseAmt);
             loanApplicationTerms.setPrincipal(loanApplicationTerms.getPrincipal().zero().plus(disburseAmt));
             outstandingBalance = outstandingBalance.zero().plus(disburseAmt);
+        	System.out.println("outstanding balance1"+outstandingBalance);
+
         }
 
         // charges which depends on total loan interest will be added to this
@@ -160,6 +162,10 @@ public abstract class AbstractLoanScheduleGenerator implements LoanScheduleGener
             extendTermForDailyRepayments = true;
         }
         while (!outstandingBalance.isZero() || !disburseDetailMap.isEmpty()) {
+        	System.out.println(instalmentNumber);
+        	System.out.println("outstanding balance"+outstandingBalance);
+            System.out.println("map size"+disburseDetailMap.size());
+
 
             actualRepaymentDate = this.scheduledDateGenerator.generateNextRepaymentDate(actualRepaymentDate, loanApplicationTerms,
                     isFirstRepayment, holidayDetailDTO);
