@@ -2456,5 +2456,12 @@ public class CommandWrapperBuilder {
         this.href = "/clients/" + clientId + "/transactions/" + transactionId + "?command=undo";
         return this;
     }
+    public CommandWrapperBuilder createTaskPlan() {
+        this.actionName = "CREATE";
+        this.entityName = "TASKPLAN";
+        this.entityId = null;
+        this.href = "/task/";
+        return this;
+    }
 
 }
