@@ -23,13 +23,19 @@ public class TaskPlannerApiConstants {
 	public static final String typeParamName="type";
 	public static final String statusParamName ="status";
 	public static final String dateParamName ="date";
+	public static final String modifiedDateParamName="modifiedDate";
+	public static final String dateFormatParamName ="dateFormat";
 	public static final String officeIdParamName="officeId";
 	public static final String entityTypeParamName="entityType";
 	public static final String entityTypeId ="entityId" ;
 	//request Parameters
 	public static final String staffParamName="staff";
+	public static final String newStaffDetailParamName="newStaffDetail";
+	public static final String removedStaffDetailParamName="removedStaffDetail";
     public static final String typeIdParamName = "typeId";
     public static final String createdDateParamName="createdDate";
+    public static final String clientAttendnceParamName="clientAttendence";
+    public static final String staffAttendenceParamName="staffAttendence";
     
 
 	

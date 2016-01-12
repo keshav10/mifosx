@@ -22,6 +22,7 @@ import org.mifosplatform.infrastructure.security.domain.BasicPasswordEncodablePl
 import org.mifosplatform.infrastructure.security.domain.PlatformUser;
 import org.mifosplatform.infrastructure.security.service.PlatformPasswordEncoder;
 
+import com.amazonaws.util.json.JSONArray;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;

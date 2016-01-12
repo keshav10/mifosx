@@ -22,10 +22,11 @@ import org.springframework.stereotype.Service;
 @Service(value = "userDetailsService")
 public class TenantAwareJpaPlatformUserDetailsService implements PlatformUserDetailsService {
 
-    @Autowired
-    private PlatformUserRepository platformUserRepository;
+    @Autowired   
+	private  PlatformUserRepository platformUserRepository;
 
-    @Override
+    
+	@Override
     @Cacheable(value = "usersByUsername", key = "T(org.mifosplatform.infrastructure.core.service.ThreadLocalContextUtil).getTenant().getTenantIdentifier().concat(#username+'ubu')")
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException, DataAccessException {
 

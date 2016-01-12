@@ -24,6 +24,7 @@ import org.mifosplatform.infrastructure.core.exception.UnsupportedParameterExcep
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import com.amazonaws.util.json.JSONArray;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

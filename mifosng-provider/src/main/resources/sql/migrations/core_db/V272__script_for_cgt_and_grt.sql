@@ -11,15 +11,17 @@ CREATE TABLE `ct_task_planner` (
 	`modifiedby_id` BIGINT(20) NULL DEFAULT NULL,
 	`modified_date` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`id`),
-	CONSTRAINT `FK_ct_task_planner_m_code` FOREIGN KEY (`type`) REFERENCES `m_code` (`id`)
+	INDEX `FK_ct_task_planner_m_office` (`office_id`),
+	INDEX `FK_ct_task_planner_m_code` (`type`),
+	CONSTRAINT `FK_ct_task_planner_m_code` FOREIGN KEY (`type`) REFERENCES `m_code_value` (`id`),
+	CONSTRAINT `FK_ct_task_planner_m_office` FOREIGN KEY (`office_id`) REFERENCES `m_office` (`id`)
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
-
 CREATE TABLE `ct_task_staff_mapping` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-	`task_id` BIGINT(20) NOT NULL,
+	`task_id` BIGINT(20) NULL DEFAULT NULL,
 	`staff_id` BIGINT(20) NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `FK_TaskID_TaskStaffMapping_TaskPlanner` (`task_id`),
@@ -29,6 +31,7 @@ CREATE TABLE `ct_task_staff_mapping` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
+
 
 CREATE TABLE `ct_client_attendence` (
 	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -59,10 +62,15 @@ COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB;
 
 ALTER TABLE `m_note`
-	ADD COLUMN `task_id` BIGINT(20) NULL DEFAULT NULL AFTER `loan_id`,
+	ADD COLUMN `task_id` BIGINT(20) NULL DEFAULT NULL AFTER `loan_transaction_id`,
 	ADD CONSTRAINT `FK_m_note_ct_task_planner` FOREIGN KEY (`task_id`) REFERENCES `ct_task_planner` (`id`);
 
-	
+INSERT INTO `m_permission` (`grouping`, `code`, `entity_name`, `action_name`, `can_maker_checker`) VALUES ('portfolio', 'CREATE_TASKPLAN', 'CREATE', 'TASKPLAN', 0);
+INSERT INTO `m_permission` (`grouping`, `code`, `entity_name`, `action_name`, `can_maker_checker`) VALUES ('portfolio', 'TASKPLAN_RESEDULE', 'RESEDULE', 'TASKPLAN', 0);
+INSERT INTO `m_permission` (`grouping`, `code`, `entity_name`, `action_name`, `can_maker_checker`) VALUES ('portfolio', 'COMPLETE_TASKPLAN', 'TASKPLAN', 'COMPLETE', 0);
+INSERT INTO `m_permission` (`grouping`, `code`, `entity_name`, `action_name`, `can_maker_checker`) VALUES ('portfolio', 'CANCLE_TASKPLAN', 'TASKPLAN', 'CANCLE', 0);
+
+
 INSERT INTO `m_code` (`code_name`, `is_system_defined`) VALUES ('Client Task Types', 1);
 INSERT INTO `m_code_value` (`code_id`, `code_value`, `code_description`, `order_position`, `code_score`) 
 VALUES ((select id from m_code where code_name like 'Client Task Types'), 'House Visit', '', 0, NULL);
@@ -73,4 +81,8 @@ VALUES ((select id from m_code where code_name like 'Group Task Types'), 'CGT', 
 INSERT INTO `m_code_value` (`code_id`, `code_value`, `code_description`, `order_position`, `code_score`) 
 VALUES ((select id from m_code where code_name like 'Group Task Types'), 'GRT', '', 1, NULL);
 	
+
+	
+
+
 

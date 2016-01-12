@@ -2460,8 +2460,30 @@ public class CommandWrapperBuilder {
         this.actionName = "CREATE";
         this.entityName = "TASKPLAN";
         this.entityId = null;
-        this.href = "/task/";
+        this.href = "/task";
         return this;
     }
+    public CommandWrapperBuilder reseduleTaskPlan(final Long taskId) {
+        this.actionName = "TASKPLAN";
+        this.entityName = "RESEDULE";
+        this.entityId = taskId;
+        this.href = "/task/"+taskId +"?command=resedule";
+        return this;
+    }
+    public CommandWrapperBuilder cancleTaskPlan(final Long taskId) {
+        this.actionName = "CANCLE";
+        this.entityName = "TASKPLAN";
+        this.entityId = taskId;
+        this.href = "/task/"+taskId +"?command=cancle";
+        return this;
+    }
+    public CommandWrapperBuilder completeTaskPlan(final Long taskId) {
+        this.actionName = "COMPLETE";
+        this.entityName = "TASKPLAN";
+        this.entityId = taskId;
+        this.href = "/task/"+taskId +"?command=complete";
+        return this;
+    }
+    
 
 }

@@ -11,22 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.conflux.taskPlanner.service.TaskPlannerWritePlatformService;
 
 @Service
-@CommandType(entity = "TASKPLAN", action = "CREATE")
-public class TaskPlannerCommandHandler implements NewCommandSourceHandler {
+@CommandType(entity = "RESEDULE", action = "TASKPLAN")
+public class UpdateTaskPlannerCommandHandler implements NewCommandSourceHandler{
 	
 	private final TaskPlannerWritePlatformService taskPlannerWritePlatformService;
-	
+   
 	@Autowired
-	public TaskPlannerCommandHandler (final TaskPlannerWritePlatformService taskPlannerWritePlatformService){
+	public UpdateTaskPlannerCommandHandler (final TaskPlannerWritePlatformService taskPlannerWritePlatformService){
 		this.taskPlannerWritePlatformService=taskPlannerWritePlatformService;
 	}
-	
 	@Transactional
     @Override
     public CommandProcessingResult processCommand(final JsonCommand command) {
-        return this.taskPlannerWritePlatformService.createTaskPlan(command);
+        return this.taskPlannerWritePlatformService.updateTaskPlan(command.entityId(),command);
 
 	}
-
+	
 
 }

@@ -11,22 +11,20 @@ import org.springframework.transaction.annotation.Transactional;
 import com.conflux.taskPlanner.service.TaskPlannerWritePlatformService;
 
 @Service
-@CommandType(entity = "TASKPLAN", action = "CREATE")
-public class TaskPlannerCommandHandler implements NewCommandSourceHandler {
+@CommandType(entity = "TASKPLAN", action = "COMPLETE")
+public class CompleteTaskPlannerHandler  implements NewCommandSourceHandler{
 	
 	private final TaskPlannerWritePlatformService taskPlannerWritePlatformService;
-	
+	   
 	@Autowired
-	public TaskPlannerCommandHandler (final TaskPlannerWritePlatformService taskPlannerWritePlatformService){
+	public CompleteTaskPlannerHandler (final TaskPlannerWritePlatformService taskPlannerWritePlatformService){
 		this.taskPlannerWritePlatformService=taskPlannerWritePlatformService;
 	}
-	
 	@Transactional
     @Override
     public CommandProcessingResult processCommand(final JsonCommand command) {
-        return this.taskPlannerWritePlatformService.createTaskPlan(command);
+        return this.taskPlannerWritePlatformService.completeTaskPlan(command.entityId(),command);
 
 	}
-
 
 }

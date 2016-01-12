@@ -24,6 +24,8 @@ import org.mifosplatform.portfolio.loanaccount.domain.LoanTransaction;
 import org.mifosplatform.portfolio.savings.domain.SavingsAccount;
 import org.mifosplatform.useradministration.domain.AppUser;
 
+import com.conflux.taskPlanner.domain.TaskPlanner;
+
 @Entity
 @Table(name = "m_note")
 public class Note extends AbstractAuditableCustom<AppUser, Long> {
@@ -53,10 +55,27 @@ public class Note extends AbstractAuditableCustom<AppUser, Long> {
     @ManyToOne
     @JoinColumn(name = "savings_account_id", nullable = true)
     private SavingsAccount savingsAccount;
+    
+    @ManyToOne
+    @JoinColumn(name = "task_id", nullable = true)
+    private TaskPlanner taskPlanner;
+    
 
-    public static Note clientNoteFromJson(final Client client, final JsonCommand command) {
+    public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public static Note clientNoteFromJson(final Client client, final JsonCommand command) {
         final String note = command.stringValueOfParameterNamed("note");
         return new Note(client, note);
+    }
+    
+    public static Note taskNote(TaskPlanner taskPlanner, String note) {       
+        return new Note(taskPlanner, note);
     }
 
     public static Note groupNoteFromJson(final Group group, final JsonCommand command) {
@@ -81,7 +100,12 @@ public class Note extends AbstractAuditableCustom<AppUser, Long> {
         this.note = note;
         this.noteTypeId = NoteType.CLIENT.getValue();
     }
-
+    public Note( final TaskPlanner taskPlanner, final String note) {
+        this.taskPlanner = taskPlanner;
+        this.note = note;
+        this.noteTypeId = NoteType.TASK.getValue();
+        this.client = null;
+    }
     private Note(final Group group, final String note) {
         this.group = group;
         this.note = note;

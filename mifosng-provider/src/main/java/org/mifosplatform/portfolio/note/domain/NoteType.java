@@ -14,7 +14,8 @@ public enum NoteType {
     LOAN(200, "noteType.loan", "loans"), //
     LOAN_TRANSACTION(300, "noteType.loan.transaction", "loanTransactions"), //
     SAVING_ACCOUNT(500, "noteType.saving", "savings"), //
-    GROUP(600, "noteType.group", "groups");
+    GROUP(600, "noteType.group", "groups"),
+    TASK(700,"noteType.task","taska");
 
     private Integer value;
     private String code;
